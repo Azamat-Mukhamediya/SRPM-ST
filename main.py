@@ -8,6 +8,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDAsk
 from sklearn.svm import LinearSVC as LSVCsk
 from sklearn.linear_model import LogisticRegression as LRRsk
+from sklearn.neighbors import KNeighborsClassifier as KNNsk
+from sklearn.ensemble import RandomForestClassifier as RFsk
 from joblib import Parallel, delayed
 
 import numpy as np
@@ -26,7 +28,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--dataset', type=str, default='skin',
                     help='mnist | usps | skin | har | churn | texture | wine | kdd')
 parser.add_argument('--model', type=str, default='LDA',
-                    help='LDA | LRR | LSVM')
+                    help='LDA | LRR | LSVM | KNN | RF')
 parser.add_argument('--training_size', type=float,
                     default=0.01, help='training set proportion')
 parser.add_argument('--test_size', type=float,
@@ -79,6 +81,10 @@ def skf5fold(model_name, X_train, y_train, X_unl, train2_index, crossval_index, 
         model = LRRsk(random_state=42)
     elif model_name == 'LSVM':
         model = LSVCsk(random_state=42)
+    elif model_name == 'KNN':
+        model = KNNsk()
+    elif model_name == 'RF':
+        model = RFsk(random_state=42)
     model.fit(X_train_scaled, train_items_labels)
 
     j = 1
@@ -116,7 +122,7 @@ def skf5fold(model_name, X_train, y_train, X_unl, train2_index, crossval_index, 
 
 def main():
     ds = ['mnist', 'usps', 'skin', 'har', 'churn', 'texture', 'wine', 'kdd']
-    mls = ['LDA', 'LRR', 'LSVM']
+    mls = ['LDA', 'LRR', 'LSVM', 'KNN', 'RF']
 
     dataset_name = opt.dataset
     model_name = opt.model
@@ -194,7 +200,11 @@ def main():
                 model = LRRsk(random_state=42)
             elif model_name == 'LSVM':
                 model = LSVCsk(random_state=42)
-
+            elif model_name == 'KNN':
+                model = KNNsk()
+            elif model_name == 'RF':
+                model = RFsk(random_state=42)
+              
             model.fit(X_train_scaled, train_items_labels)
 
             test_preds = model.predict(X_test_scaled)
@@ -224,7 +234,11 @@ def main():
                     model = LRRsk(random_state=42)
                 elif model_name == 'LSVM':
                     model = LSVCsk(random_state=42)
-
+                elif model_name == 'KNN':
+                    model = KNNsk()
+                elif model_name == 'RF':
+                    model = RFsk(random_state=42)
+                  
                 model.fit(X_train_scaled, train_items_labels)
 
                 if j == 2**i:
