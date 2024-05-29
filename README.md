@@ -22,7 +22,7 @@ Datasets are collected from OpenML(https://openml.org/) website.
 
 Datasets: mnist, usps, skin, har, churn, texture, wine, kdd
 
-Models: LDA, LRR, LSVM
+Models: LDA, LRR, LSVM, KNN, RF
 
 ## Usage
 
