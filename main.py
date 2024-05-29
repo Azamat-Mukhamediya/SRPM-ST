@@ -108,6 +108,11 @@ def skf5fold(model_name, X_train, y_train, X_unl, train2_index, crossval_index, 
             model = LRRsk(random_state=42)
         elif model_name == 'LSVM':
             model = LSVCsk(random_state=42)
+        elif model_name == 'KNN':
+            model = KNNsk()
+        elif model_name == 'RF':
+            model = RFsk(random_state=42)
+          
         model.fit(X_train_scaled, train_items_labels)
 
         if j == 2**i:
