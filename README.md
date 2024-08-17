@@ -44,6 +44,7 @@ https://github.com/Azamat-Mukhamediya/SRPM-ST/blob/main/Figure_with_std.pdf
 title = {SRPM-ST: Sequential retraining and pseudo-labeling in mini-batches for self-training},
 author = {Azamat Mukhamediya and Amin Zollanvari},
 journal = {Neurocomputing},
+volume = {605},
 pages = {128343},
 year = {2024},
 issn = {0925-2312},
